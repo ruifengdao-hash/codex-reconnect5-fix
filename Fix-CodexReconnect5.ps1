@@ -382,13 +382,31 @@ function Test-ProxyEndpoint {
     param([string]$ProxyUrl)
 
     Write-Step "Testing proxy access to https://api.openai.com/"
-    $output = & curl.exe -I -L --max-time 20 --proxy $ProxyUrl https://api.openai.com/ 2>&1
-    $text = $output | Out-String
-    if ($text -match "HTTP/1\.1 200 Connection established" -or $text -match "HTTP/2|HTTP/1\.1") {
-        Write-Done "Proxy endpoint responded. Cloudflare 421/403 responses are acceptable for this connectivity test."
+
+    $previousErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = "Continue"
+
+    try {
+        $output = & curl.exe --silent --show-error --head --location --max-time 20 --proxy $ProxyUrl https://api.openai.com/ 2>&1
+        $exitCode = $LASTEXITCODE
+        $text = $output | Out-String
+
+        if ($text -match "HTTP/1\.1 200 Connection established" -or $text -match "HTTP/2|HTTP/1\.1") {
+            Write-Done "Proxy endpoint responded. Cloudflare 421/403 responses are acceptable for this connectivity test."
+        }
+        elseif ($exitCode -eq 0) {
+            Write-Done "Proxy test command completed."
+        }
+        else {
+            Write-Warn "Proxy test did not show a normal HTTP response. Check Clash node stability and port."
+        }
     }
-    else {
-        Write-Warn "Proxy test did not show a normal HTTP response. Check Clash node stability and port."
+    catch {
+        Write-Warn "Proxy test failed, but the configuration changes were already applied."
+        Write-Warn $_.Exception.Message
+    }
+    finally {
+        $ErrorActionPreference = $previousErrorActionPreference
     }
 }
 
