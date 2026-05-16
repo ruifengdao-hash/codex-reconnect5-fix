@@ -2,6 +2,40 @@
 
 这份指南给完全不熟悉 PowerShell、端口、代理的新手使用。
 
+## 从 ZIP 下载开始
+
+如果你是从 GitHub 下载 ZIP，请按这个顺序操作：
+
+1. 在 GitHub 页面点击 `Code`。
+2. 点击 `Download ZIP`。
+3. 下载完成后，右键 ZIP 文件，选择“全部解压缩”。
+4. 打开解压后的文件夹。
+5. 确认里面能看到：
+
+```text
+Run-Fix-AutoDetect.cmd
+Run-CheckPort.cmd
+Fix-CodexReconnect5.ps1
+Check-ClashPort.ps1
+README.md
+GUIDE.md
+```
+
+6. 先打开 Clash Verge / Mihomo。
+7. 双击 `Run-CheckPort.cmd` 检查端口。
+8. 双击 `Run-Fix-AutoDetect.cmd` 自动修复。
+9. 如果 Windows 提示安全警告，选择“仍要运行”。
+10. 修复完成后，按顺序重启：
+
+```text
+完全退出 Codex
+完全退出 Clash Verge
+重新打开 Clash Verge
+再打开 Codex
+```
+
+注意：Clash Verge 要从右下角托盘图标里退出，不只是关闭窗口。
+
 ## 第 1 步：确认 Clash Verge 已经打开
 
 先打开 Clash Verge / Mihomo，确认它能正常上网。

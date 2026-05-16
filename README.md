@@ -4,6 +4,37 @@
 
 如果你是新手，先看 [GUIDE.md](./GUIDE.md)，里面有一步一步的截图式文字流程。
 
+## 下载 ZIP 后怎么用
+
+1. 在 GitHub 页面点击 `Code`，再点击 `Download ZIP`。
+2. 右键下载好的 ZIP 文件，选择“全部解压缩”。
+3. 打开解压后的文件夹，确认能看到这些文件：
+
+```text
+Run-Fix-AutoDetect.cmd
+Run-CheckPort.cmd
+Fix-CodexReconnect5.ps1
+Check-ClashPort.ps1
+README.md
+GUIDE.md
+```
+
+4. 先打开 Clash Verge / Mihomo，确认代理能正常使用。
+5. 双击 `Run-CheckPort.cmd`，查看推荐端口。
+6. 双击 `Run-Fix-AutoDetect.cmd`，开始自动修复。
+7. 如果 Windows 提示安全警告，选择“仍要运行”。
+8. 等脚本显示完成提示。
+9. 按顺序重启：
+
+```text
+完全退出 Codex
+完全退出 Clash Verge
+重新打开 Clash Verge
+再打开 Codex
+```
+
+注意：Clash Verge 要从右下角托盘图标里退出，不只是关闭窗口。
+
 ## 一句话使用
 
 最简单方式：双击运行：
